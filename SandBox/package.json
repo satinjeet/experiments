@@ -1,0 +1,29 @@
+{
+  "name": "sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start:live": "NODE_ENV=development parcel test/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^1.10.1",
+    "sass": "^1.14.1",
+    "typescript": "^3.1.1"
+  },
+  "dependencies": {
+    "ace-builds": "^1.4.1",
+    "javascript-terminal": "^1.0.2",
+    "jquery": "^3.3.1",
+    "jquery.terminal": "^1.23.2",
+    "materialize-css": "^1.0.0-rc.2",
+    "preact": "^8.3.1",
+    "preact-compat": "^3.18.4",
+    "xterm": "^3.7.0"
+  }
+}

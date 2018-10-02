@@ -1,0 +1,8 @@
+@import "~materialize-css/sass/materialize.scss";
+@import "../../node_modules/jquery.terminal/css/jquery.terminal.css";
+
+body {
+    height: 100vh;
+}
+
+@import "./editor.scss";
