@@ -1,6 +1,9 @@
 import { h, Component } from 'preact';
-import { $, jQuery } from 'jquery';
-import 'jquery.terminal';
+// Works , do not worry
+import jQuery from 'jquery';
+import JT from 'jquery.terminal';
+
+JT(undefined, jQuery);
 
 export class Terminal extends Component {
     private ref: HTMLDivElement;
@@ -9,25 +12,25 @@ export class Terminal extends Component {
     }
 
     public componentDidMount() {
-        const ref = $(this.ref);
-        // ref.terminal(function(command) {
-        //     if (command !== '') {
-        //         try {
-        //             var result = eval(command);
-        //             if (result !== undefined) {
-        //                 this.echo(new String(result));
-        //             }
-        //         } catch(e) {
-        //             this.error(new String(e));
-        //         }
-        //     } else {
-        //        this.echo('');
-        //     }
-        // }, {
-        //     greetings: 'JavaScript Interpreter',
-        //     name: 'js_demo',
-        //     height: 200,
-        //     prompt: 'js> '
-        // });
+        const ref = jQuery(this.ref);
+        ref.terminal(function(command) {
+            if (command !== '') {
+                try {
+                    var result = eval(command);
+                    if (result !== undefined) {
+                        this.echo(new String(result));
+                    }
+                } catch(e) {
+                    this.error(new String(e));
+                }
+            } else {
+            this.echo('');
+            }
+        }, {
+            greetings: 'JavaScript Interpreter',
+            name: 'js_demo',
+            height: 200,
+            prompt: 'js> '
+        });
     }
 }

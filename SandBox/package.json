@@ -17,6 +17,8 @@
     "typescript": "^3.1.1"
   },
   "dependencies": {
+    "@reactivex/rxjs": "^6.3.3",
+    "@types/jquery": "^3.3.11",
     "ace-builds": "^1.4.1",
     "javascript-terminal": "^1.0.2",
     "jquery": "^3.3.1",
@@ -24,6 +26,8 @@
     "materialize-css": "^1.0.0-rc.2",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.3.3",
     "xterm": "^3.7.0"
   }
 }

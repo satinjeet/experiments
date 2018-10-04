@@ -14,7 +14,7 @@ export class Editor extends Component<any, any> {
     public render() {
         return <div ref={(ref) => {
             this.ref = ref;
-        }} class={this.props.classes.join(' ')}>Editor</div>
+        }} class={this.props.classes.join(' ')}></div>
     }
 
     public componentDidMount() {

@@ -5,7 +5,7 @@ import { Terminal } from './components/terminal';
 
 function App(props: any) {
     return <div class="">
-        {/* <Editor /> */}
+        <Editor />
         <Terminal />
     </div>
 }
