@@ -1,26 +1,33 @@
-import { h, render, Component } from 'preact';
-import * as ace from 'ace-builds';
-import "ace-builds/src-noconflict/theme-monokai"
-import { Mode as JSMode } from "ace-builds/src-noconflict/mode-javascript";
+import { h, Component } from 'preact';
+import { Editor } from '../ide/Editor';
 
 interface IEditorProps {
     classes?: string[];
 }
 
-export class Editor extends Component<any, any> {
+const startString = `class Foo {
+    constructor() {
+        this.bar = "value";
+    }
+}
+`;
+
+export class EditorComponent extends Component<any, any> {
     private ref;
     private editor;
 
     public render() {
         return <div ref={(ref) => {
             this.ref = ref;
-        }} class={this.props.classes.join(' ')}></div>
+        }} class={this.props.classes.join(' ')}>
+            {
+                startString
+            }
+        </div>
     }
 
     public componentDidMount() {
-        this.editor = ace.edit(this.ref);
-        this.editor.setTheme("ace/theme/monokai");
-        this.editor.session.setMode(new JSMode());
+        this.editor = Editor.createEditor(this.ref);
     }
 
     public static defaultProps: IEditorProps = {

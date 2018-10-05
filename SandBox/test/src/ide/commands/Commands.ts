@@ -1,23 +1,19 @@
-import { Ace } from "ace-builds";
 import { Subject } from 'rxjs-compat/Subject';
 import { ICommand } from './ICommand';
+import { Editor } from '../Editor';
+import { ExecuteCodeCommand } from './commands/ExecuteCode.Command';
 
 export class Commands {
-    private editor: Ace.Editor;
+    private editor: Editor;
     private upStream: Subject<ICommand>;
 
-    constructor(editor: Ace.Editor) {
+    constructor(editor: Editor) {
         this.editor = editor;
         this.upStream = new Subject<ICommand>()
+        this.setUpCommands()
     }
 
     setUpCommands() {
-        this.editor.commands.addCommand({
-            name: 'execute',
-            bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
-            exec: () => {
-                console.log(this.editor.getValue());
-            }
-        })
+        this.editor.addCommand(new ExecuteCodeCommand(this.editor));
     }
 }

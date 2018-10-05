@@ -1,11 +1,11 @@
 import { h, render, Component } from 'preact';
-import { Editor } from './components/editor';
+import { EditorComponent } from './components/editor';
 import { Terminal } from './components/terminal';
 
 
 function App(props: any) {
     return <div class="">
-        <Editor />
+        <EditorComponent />
         <Terminal />
     </div>
 }
