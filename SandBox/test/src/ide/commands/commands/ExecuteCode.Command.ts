@@ -1,6 +1,7 @@
 import { ICommand } from '../ICommand';
 import { CommandTypes } from '../CommandTypes';
 import { Editor } from '../../Editor';
+import { ExecutionContext } from '../../context/ExecutionContext';
 
 export class ExecuteCodeCommand implements ICommand {
     type: CommandTypes = CommandTypes.EXECUTE;
@@ -19,6 +20,7 @@ export class ExecuteCodeCommand implements ICommand {
             bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
             exec: () => {
                 console.log(this.editor.Value);
+                ExecutionContext.createContext(this.editor.Value);
             }
         }
     }

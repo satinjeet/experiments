@@ -14,8 +14,6 @@ export class Editor {
         this.editor.session.setMode(new JSMode());
 
         new Commands(this);
-
-        console.log(this);
     }
 
     public get Value() {

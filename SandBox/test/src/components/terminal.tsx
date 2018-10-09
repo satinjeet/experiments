@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 // Works , do not worry
 import jQuery from 'jquery';
 import JT from 'jquery.terminal';
+import { ExecutionContext } from '../ide/context/ExecutionContext';
 
 JT(undefined, jQuery);
 
@@ -16,7 +17,7 @@ export class Terminal extends Component {
         ref.terminal(function(command) {
             if (command !== '') {
                 try {
-                    var result = eval(command);
+                    var result = ExecutionContext.execute(command);
                     if (result !== undefined) {
                         this.echo(new String(result));
                     }
@@ -27,7 +28,7 @@ export class Terminal extends Component {
             this.echo('');
             }
         }, {
-            greetings: 'JavaScript Interpreter',
+            greetings: 'Terminal',
             name: 'js_demo',
             height: 200,
             prompt: 'js> '

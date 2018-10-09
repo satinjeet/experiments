@@ -16,12 +16,23 @@ export interface ObjectsToExpose {
 
 export function SandBox(code: string, exposure: ObjectsToExpose[]) : Function {
     let regex = new RegExp("([$0-9a-zA-Z]+) ?=", "gmi");
+    let classRegex = new RegExp("class ([a-zA-Z]+[a-zA-Z0-9]*)? [{|e]", "gmi");
     let found;
     let scope = `let scope = {};`;
     while(found = regex.exec(code)) {
         regex.lastIndex = found.index + found[0].length;
         scope += `
-        debugger
+        try {
+            scope["${found[1]}"] = ${found[1]};
+        } catch (exp) {
+            scope["${found[1]}"] = null;
+        }
+    `;
+    }
+
+    while(found = classRegex.exec(code)) {
+        classRegex.lastIndex = found.index + found[0].length;
+        scope += `
         try {
             scope["${found[1]}"] = ${found[1]};
         } catch (exp) {
@@ -37,7 +48,7 @@ export function SandBox(code: string, exposure: ObjectsToExpose[]) : Function {
     // code end
     
     ${scope}
-    
+    debugger
     return function execute(varName) {
         return scope[varName];
     }
